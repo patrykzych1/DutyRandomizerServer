@@ -45,4 +45,13 @@ public class EmployeeApiController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @CrossOrigin
+    @DeleteMapping(value = "/employee/{employeeId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Void> deleteEmployee(@PathVariable Long employeeId) {
+        LOGGER.info("delete employee: {}", employeeId);
+
+        employeeService.deleteEmployee(employeeId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

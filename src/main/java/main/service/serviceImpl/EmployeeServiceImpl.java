@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -35,5 +36,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void createEmployee(CreateEmployeeDto createEmployeeDto) {
         Employee employee = employeeMapper.convert(createEmployeeDto);
         employeeRepository.save(employee);
+    }
+
+    @Override
+    public void deleteEmployee(Long employeeId) {
+        Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
+        employeeOptional.ifPresent(employeeRepository::delete);
     }
 }
