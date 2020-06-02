@@ -4,17 +4,17 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "workers")
+@Table(name = "pracownicy")
 public class Employee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_pracownika")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "imie")
     private String name;
 
-    @Column(name = "surname")
+    @Column(name = "nazwisko")
     private String surname;
 
     public Employee() {

@@ -30,7 +30,7 @@ public class EmployeeApiController {
     @CrossOrigin
     @GetMapping(value = "/employee", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<EmployeeDto>> getOnDutyList() {
-        LOGGER.info("on duty list");
+        LOGGER.info("workers list");
 
         List<EmployeeDto> employeeDtoList = employeeService.findAll();
         return new ResponseEntity<>(employeeDtoList, HttpStatus.OK);
