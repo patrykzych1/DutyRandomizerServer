@@ -1,6 +1,8 @@
 package main.controller;
 
 import main.domain.dto.CreateEmployeeDto;
+import main.domain.dto.DatesDto;
+import main.domain.dto.DutyDto;
 import main.domain.dto.EmployeeDto;
 import main.service.EmployeeService;
 import org.slf4j.Logger;
@@ -42,7 +44,7 @@ public class EmployeeApiController {
         LOGGER.info("create employee: {}", createEmployeeDto);
 
         employeeService.createEmployee(createEmployeeDto);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>( HttpStatus.CREATED);
     }
 
     @CrossOrigin
@@ -54,4 +56,16 @@ public class EmployeeApiController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @CrossOrigin
+    @PostMapping(value = "/random", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<List<DutyDto>> random(@RequestBody DatesDto datesDto) {
+        LOGGER.info("random: {}", datesDto.getStartDate().getDay());
+        LOGGER.info("random: {}", datesDto.getEndDate().getDay());
+        LOGGER.info("random: {}", datesDto.getDays());
+        LOGGER.info("random: {}", datesDto.getAmountOfWorkers());
+
+        List<DutyDto> dutyDtos = employeeService.random(datesDto);
+
+        return new ResponseEntity<>(dutyDtos, HttpStatus.OK);
+    }
 }
